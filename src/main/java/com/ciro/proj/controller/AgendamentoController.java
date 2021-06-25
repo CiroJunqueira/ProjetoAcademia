@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ciro.proj.domain.Agendamento;
 import com.ciro.proj.domain.dto.AgendamentoDTO;
 import com.ciro.proj.domain.dto.AgendamentoTO;
-import com.ciro.proj.respository.AgendamentoRepository;
+import com.ciro.proj.repository.AgendamentoRepository;
 import com.ciro.proj.service.AgendamentoService;
 
 @RestController

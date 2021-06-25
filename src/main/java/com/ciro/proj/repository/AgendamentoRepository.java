@@ -1,4 +1,4 @@
-package com.ciro.proj.respository;
+package com.ciro.proj.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
