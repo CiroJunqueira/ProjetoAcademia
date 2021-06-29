@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class UsuarioForm {
 
-	private String nome;
+	private String name;
 
 	private String email;
 

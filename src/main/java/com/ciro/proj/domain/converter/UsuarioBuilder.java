@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class UsuarioBuilder {
 
 	public Usuario build(UsuarioForm usuarioForm) {
-		return Usuario.builder().nome(usuarioForm.getNome()).email(usuarioForm.getEmail())
+		return Usuario.builder().nome(usuarioForm.getName()).email(usuarioForm.getEmail())
 				.password(usuarioForm.getPassword()).dtCriacao(LocalDateTime.now()).dtAtualizacao(LocalDateTime.now())
 				.build();
 	}
