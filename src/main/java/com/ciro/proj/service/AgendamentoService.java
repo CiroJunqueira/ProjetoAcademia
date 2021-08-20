@@ -2,24 +2,29 @@ package com.ciro.proj.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ciro.proj.domain.Agendamento;
-import com.ciro.proj.domain.dto.AgendamentoDTO;
+import com.ciro.proj.domain.User;
+import com.ciro.proj.domain.converter.AgendamentoBuilder;
 import com.ciro.proj.domain.dto.AgendamentoTO;
+import com.ciro.proj.domain.dto.form.AgendamentoForm;
 import com.ciro.proj.exception.ErroException;
 import com.ciro.proj.repository.AgendamentoRepository;
+import com.ciro.proj.repository.UserRepository;
+
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class AgendamentoService {
 
 	public static final int NUM_MAX = 15;
 
-	@Autowired
 	private AgendamentoRepository agendamentoRepository;
+	private UserRepository userRepository;
 
-	public Agendamento marcar(AgendamentoDTO a) {
+	public Agendamento marcar(AgendamentoForm a) {
 		Agendamento agendamento = new Agendamento();
 
 		if (a.getHorario().getMinute() != 0) {
@@ -32,19 +37,20 @@ public class AgendamentoService {
 			throw new ErroException("Número limite atingido (máximo " + NUM_MAX + " pessoas)");
 		}
 
-		agendamento.setNome(a.getNome());
-		agendamento.setHorario(a.getHorario());
+		User user = userRepository.findByUserName(a.getUserName());
+		Agendamento ag = new AgendamentoBuilder(agendamento).build(a, user);
 
-		return agendamentoRepository.save(agendamento);
+		return agendamentoRepository.save(ag);
 
 	}
 
-	public Agendamento modificar(String nome, AgendamentoTO a) {
-		Agendamento agendamentoSalvo = agendamentoRepository.findByNome(nome);
-		if (agendamentoSalvo == null) {
-			throw new ErroException("Nome não encontrado.");
-		}
-		agendamentoSalvo.setHorario(a.getHorario());
-		return agendamentoRepository.save(agendamentoSalvo);
+	public Agendamento modificar(String email, AgendamentoTO a) {
+//		Agendamento agendamentoSalvo = agendamentoRepository.findb
+//		if (agendamentoSalvo == null) {
+//			throw new ErroException("Nome não encontrado.");
+//		}
+//		agendamentoSalvo.setHorario(a.getHorario());
+//		return agendamentoRepository.save(agendamentoSalvo);
+		return null;
 	}
 }

@@ -7,25 +7,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ciro.proj.domain.Usuario;
-import com.ciro.proj.domain.form.UsuarioForm;
-import com.ciro.proj.service.UsuarioService;
+import com.ciro.proj.domain.User;
+import com.ciro.proj.domain.dto.form.UserForm;
+import com.ciro.proj.service.UserService;
 
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/usuario")
+@RequestMapping(value = "/user")
 @AllArgsConstructor
-public class UsuarioController {
+public class UserController {
 
-	private UsuarioService usuarioService;
+	private final UserService userService;
 
 	@PostMapping
-	public ResponseEntity<Usuario> criar(@RequestBody UsuarioForm usuarioForm) {
+	public ResponseEntity<User> create(@RequestBody UserForm userForm) {
 
-		Usuario usuarioCriado = usuarioService.criar(usuarioForm);
+		User createdUser = userService.create(userForm);
 
-		return new ResponseEntity<Usuario>(usuarioCriado, HttpStatus.CREATED);
+		return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
 	}
-
 }

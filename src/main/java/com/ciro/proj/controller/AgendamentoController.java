@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ciro.proj.domain.Agendamento;
-import com.ciro.proj.domain.dto.AgendamentoDTO;
 import com.ciro.proj.domain.dto.AgendamentoTO;
+import com.ciro.proj.domain.dto.form.AgendamentoForm;
 import com.ciro.proj.repository.AgendamentoRepository;
 import com.ciro.proj.service.AgendamentoService;
 
@@ -36,7 +36,7 @@ public class AgendamentoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Agendamento marcar(@RequestBody AgendamentoDTO a) {
+	public Agendamento marcar(@RequestBody AgendamentoForm a) {
 		return agendamentoService.marcar(a);
 	}
 

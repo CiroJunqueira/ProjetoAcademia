@@ -11,9 +11,9 @@ import com.ciro.proj.domain.Agendamento;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 
-	Agendamento findByNome(String nome);
-
 	@Query("select h from Agendamento h where h.horario =:param")
 	List<Agendamento> findByHorario(@Param("param") LocalDateTime param);
 
+	
+	
 }
